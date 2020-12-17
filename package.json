@@ -1,0 +1,31 @@
+{
+  "name": "weferral-tracker",
+  "version": "0.0.1",
+  "description": "JavaScript library to interact with Wefferal",
+  "main": "wefferal.min.js",
+  "dependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-iife": "^0.4.0",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "natives": "^1.1.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "./node_modules/.bin/gulp",
+    "dist": "gulp build",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weferralHQ/tracker.git"
+  },
+  "author": "Ezeh Uche",
+  "license": "MIT"
+}
