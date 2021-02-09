@@ -20,7 +20,7 @@ class Pixel {
   getAttribute() {
     return {
       id:           () => Config.id, // website Id
-      uid:          () => Cookie.get('uid'), // user Id
+      ref:          () => Cookie.get('ref'), // referral code
       ev:           () => this.event, // event being triggered
       ed:           () => this.optional, // any event data to pass along
       v:            () => Config.version, // openpixel.js version
@@ -36,11 +36,6 @@ class Pixel {
       md:           () => Browser.isMobile(), // is a mobile device?
       ua:           () => Browser.userAgent(), // user agent
       tz:           () => (new Date()).getTimezoneOffset(), // timezone
-      utm_source:   key => Cookie.getUtm(key), // get the utm source
-      utm_medium:   key => Cookie.getUtm(key), // get the utm medium
-      utm_term:     key => Cookie.getUtm(key), // get the utm term
-      utm_content:  key => Cookie.getUtm(key), // get the utm content
-      utm_campaign: key => Cookie.getUtm(key), // get the utm campaign
       ...Config.params
     }
   }

@@ -32,31 +32,14 @@ class Cookie {
     return Helper.isPresent(this.get(name));
   }
 
-  static setUtms() {
-    var utmArray = ['utm_source', 'utm_medium', 'utm_term', 'utm_content', 'utm_campaign'];
-    var exists = false;
-    for (var i = 0, l = utmArray.length; i < l; i++) {
-      if (Helper.isPresent(Url.getParameterByName(utmArray[i]))) {
-        exists = true;
-        break;
-      }
-    }
-    if (exists) {
-      var val, save = {};
-      for (var i = 0, l = utmArray.length; i < l; i++) {
-        val = Url.getParameterByName(utmArray[i]);
-        if (Helper.isPresent(val)) {
-          save[utmArray[i]] = val;
-        }
-      }
-      this.set('utm', JSON.stringify(save));
-    }
+  static setCid(custId) {
+    this.set('wefUid', custId);
   }
 
-  static getUtm(name) {
-    if (this.exists('utm')) {
-      var utms = JSON.parse(this.get('utm'));
-      return name in utms ? utms[name] : '';
+  static getCid(name) {
+    if (this.exists('wefUid')) {
+      var custId = this.get('wefUid');
+      return custId;
     }
   }
 }

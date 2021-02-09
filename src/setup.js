@@ -1,7 +1,7 @@
 // update the cookie if it exists, if it doesn't, create a new one, lasting 2 years
-Cookie.exists('uid') ? Cookie.set('uid', Cookie.get('uid'), 2*365*24*60) : Cookie.set('uid', Helper.guid(), 2*365*24*60);
-// save any utms through as session cookies
-Cookie.setUtms();
+Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
+
+alert('help');
 
 // process the queue and future incoming commands
 pixelFunc.process = function(method, value, optional) {
@@ -13,7 +13,10 @@ pixelFunc.process = function(method, value, optional) {
     if(value === 'pageload' && !Config.pageLoadOnce) {
       Config.pageLoadOnce = true;
       new Pixel(value, pixelFunc.t, optional);
-    } else if(value !== 'pageload' && value !== 'pageclose') {
+    } else if(value === 'pageclose') {
+      Cookie.delete('wefUid');
+    }
+    else if(value !== 'pageload' && value !== 'pageclose') {
       new Pixel(value, Helper.now(), optional);
     }
   }
