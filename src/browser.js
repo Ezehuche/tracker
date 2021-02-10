@@ -20,18 +20,8 @@ class Browser {
     return 'ontouchstart' in document;
   }
 
- static isBot(userAgent) {
-
-    return (/bot|crawler|spider|crawling/i).test(userAgent)
-  
-  }
-
   static userAgent() {
-    if (this.isBot(window.navigator.userAgent)){
-      return console.warn('Weferral ignores you because you are a bot')
-    } else {
-      return window.navigator.userAgent;
-    }
+    return window.navigator.userAgent;
     
   }
 }
