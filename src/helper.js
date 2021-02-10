@@ -5,7 +5,7 @@ class Helper {
 
 
   static now() {
-    return 1 * new Date;
+    return 1 * new Date();
   }
 
   static guid() {

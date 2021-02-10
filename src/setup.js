@@ -1,11 +1,10 @@
 // update the cookie if it exists, if it doesn't, create a new one, lasting 2 years
 Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
 
-alert('help');
 
 // process the queue and future incoming commands
 pixelFunc.process = function(method, value, optional) {
-  if (method === 'init') {
+  if (method === 'secret_key') {
     Config.id = value;
   } else if(method === 'param') {
     Config.params[value] = () => optional
