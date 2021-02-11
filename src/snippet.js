@@ -1,12 +1,12 @@
-!function(window, document, script, http, opix, cacheTime, one, two, three) {
+!function(window, document, script, http, weferral, cacheTime, one, two, three) {
     // return if the setup has already occurred
-    // this is to prevent double loading openpixel.js if someone accidentally had this more than once on a page
-    if (window[opix]) return;
+    // this is to prevent double loading tracker.js if someone accidentally had this more than once on a page
+    if (window[weferral]) return;
 
-    // setup the queue to collect all of the calls to openpixel.js before it is loaded
-    one = window[opix] = function() {
-      // if openpixel.js has loaded, pass the argument through to it
-      // if openpixel.js has not loaded yet, queue the calls in an array
+    // setup the queue to collect all of the calls to tracker.js before it is loaded
+    one = window[weferral] = function() {
+      // if tracker.js has loaded, pass the argument through to it
+      // if tracker.js has not loaded yet, queue the calls in an array
       one.process ? one.process.apply(one, arguments) : one.queue.push(arguments)
     }
     // setup an empty queue array
@@ -25,8 +25,8 @@
     // if this block is the only <script> tag on the page it will get this block
     three = document.getElementsByTagName(script)[0];
     // insert the newly created script tag above the first <script> tag in the document
-    // this ensures openpixel.js is loaded asynchronously
+    // this ensures tracker.js is loaded asynchronously
     three.parentNode.insertBefore(two, three)
-}(window, document, 'script', 'JS_URL', 'OPIX_FUNC', 24*60*60*1000);
-OPIX_FUNC("init","ID-XXXXXXXX");
-OPIX_FUNC("event","pageload");
+}(window, document, 'script', 'JS_URL', 'TRACKER_FUNC', 24*60*60*1000);
+TRACKER_FUNC("init","ID-XXXXXXXX");
+TRACKER_FUNC("event","pageload");

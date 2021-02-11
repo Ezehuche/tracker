@@ -23,7 +23,7 @@ class Pixel {
       ref:          () => Cookie.get('ref'), // referral code
       ev:           () => this.event, // event being triggered
       ed:           () => this.optional, // any event data to pass along
-      v:            () => Config.version, // openpixel.js version
+      v:            () => Config.version, // tracker.js version
       dl:           () => window.location.href, // document location
       rl:           () => document.referrer, // referrer location
       ts:           () => this.timestamp, // timestamp when event was triggered

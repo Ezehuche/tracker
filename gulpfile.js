@@ -1,9 +1,9 @@
 // ---------- Configurations for your custom build of open pixel ---------- //
 
-// This is the header comment that will be included at the top of the "dist/openpixel.js" file
-var HEADER_COMMENT     = process.env.OPIX_HEADER_COMMENT || '// Open Pixel v1.2.0 | Published By Dockwa | Created By Stuart Yamartino | MIT License\n';
+// This is the header comment that will be included at the top of the "dist/tracker.js" file
+var HEADER_COMMENT     = process.env.OPIX_HEADER_COMMENT || '// Open Pixel v1.2.0 | MIT License\n';
 
-// This is where the compiled snippet and openpixel.js files will be dropped
+// This is where the compiled snippet and tracker.js files will be dropped
 var DESTINATION_FOLDER = process.env.OPIX_DESTINATION_FOLDER || './dist';
 
 // The name of the global function and the cookie prefix that will be included in the snippet and is the client to fire off custom events
@@ -12,10 +12,10 @@ var PIXEL_FUNC_NAME    = process.env.OPIX_PIXEL_FUNC_NAME || 'opix';
 // The remote URL of the pixel.gif file that will be pinged by the browser to send tracking information
 var PIXEL_ENDPOINT     = process.env.OPIX_PIXEL_ENDPOINT || '/pixel.gif';
 
-// The core openpixel.min.js file that the snippet will loaded asynchronously into the browser
-var JS_ENDPOINT        = process.env.OPIX_JS_ENDPOINT || '/openpixel.js';
+// The core tracker.min.js file that the snippet will loaded asynchronously into the browser
+var JS_ENDPOINT        = process.env.OPIX_JS_ENDPOINT || '/tracker.js';
 
-// The current version of your openpixel configuration
+// The current version of your tracker configuration
 var VERSION            = process.env.OPIX_VERSION || '1';
 
 // ------------------------------------------------------------------------//
@@ -30,8 +30,8 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var babel  = require('gulp-babel');
 
-// ---- Compile openpixel.js and openpixel.min.js files ---- //
-function openpixel() {
+// ---- Compile tracker.js and tracker.min.js files ---- //
+function tracker() {
   return gulp.src([
     './src/config.js',
     './src/helper.js',
@@ -42,7 +42,7 @@ function openpixel() {
     './src/setup.js',
     './src/event.js',
   ])
-  .pipe(concat('openpixel.js'))
+  .pipe(concat('tracker.js'))
   .pipe(babel())
   .pipe(iife({
     useStrict: false,
@@ -53,7 +53,7 @@ function openpixel() {
   .pipe(inject.replace('OPIX_FUNC', PIXEL_FUNC_NAME))
   // This will output the non-minified version
   .pipe(gulp.dest(DESTINATION_FOLDER))
-  // This will minify and rename to openpixel.min.js
+  // This will minify and rename to tracker.min.js
   .pipe(uglify())
   .pipe(inject.prepend(HEADER_COMMENT))
   .pipe(rename({ extname: '.min.js' }))
@@ -75,14 +75,14 @@ function snippet() {
 
 // watch files and run gulp
 function watch() {
-  gulp.watch('src/*', openpixel);
+  gulp.watch('src/*', tracker);
   gulp.watch('src/*', snippet);
 }
 
 // run all tasks once
-var build = gulp.parallel(openpixel, snippet);
+var build = gulp.parallel(tracker, snippet);
 
-exports.openpixel = openpixel;
+exports.tracker = tracker;
 exports.snippet = snippet;
 exports.watch = watch;
 exports.build = build;
