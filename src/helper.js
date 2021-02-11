@@ -50,4 +50,41 @@ class Helper {
       return String(data);
     }
   }
+
+static isBot(userAgent) {
+    return (/bot|crawler|spider|crawling/i).test(userAgent)
+}
+
+static sendEvent(event, method, optional){
+  const message = '';
+    if(this.isBot(Browser.userAgent()) === false){
+        const headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        if(Config.id){
+            headers.append("Authorization", `Bearer ${Config.id}`);
+        }
+        
+        const init = { method: method,
+            headers: headers,
+            credentials: 'include',
+        };
+
+        if(method == "POST" || method=="PUT"){
+            init.body = Helper.optionalData(optional);
+        }
+        const ref_code = Cookie.get('ref');
+
+        fetch(`http://localhost:3001/api/v1/events/${event}/${ref_code}`, init)
+        .then((resp) => resp.json()).then(function (data) {
+            message = 'event successfully sent';
+
+            return message;
+        });
+    } else {
+      message = 'this is bot';
+      return message;
+    }
+    
+}
 }

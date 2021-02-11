@@ -37,7 +37,7 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 
     <script>
-        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="../dist/openpixel.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","opix"),opix("init","ID-XXXXXXXX"),opix("event","pageload");
+        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="../dist/openpixel.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","opix"),opix("init","ID-XXXXXXXX");
     </script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -56,7 +56,7 @@
 				<div class="row">
 					<div class="booking-form">
 						<div class="booking-bg"></div>
-						<form action="https://api.beenform.co/form/beenform/c5974e32fe7ec634" method="post" id="beenform" target="_blank">
+						<form id="beenform" target="_blank">
 							<div class="form-header">
 								<h2>Make your reservation</h2>
 								<p>This is a only demo. This form show how your users can create and update their personal records in Airtable using
@@ -109,7 +109,7 @@
 								<input class="form-control" type="tel" name="Phone" placeholder="Enter your phone number">
 							</div>
 							<div class="form-btn">
-								<button type="submit" class="submit-btn">Book Now</button>
+								<button type="button" data-opix-event="conversion" class="submit-btn">Book Now</button>
 							</div>
 						</form>
 					</div>

@@ -1,4 +1,4 @@
-// update the cookie if it exists, if it doesn't, create a new one, lasting 2 years
+// update the cookie if it exists, if it doesn't, create a new one
 Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
 
 
@@ -16,6 +16,7 @@ pixelFunc.process = function(method, value, optional) {
       Cookie.delete('wefUid');
     }
     else if(value !== 'pageload' && value !== 'pageclose') {
+      Helper.sendEvent(value, 'POST', optional);
       new Pixel(value, Helper.now(), optional);
     }
   }
@@ -37,7 +38,6 @@ window.addEventListener('unload', function() {
     });
   }
 });
-
 window.onload = function() {
   var aTags = document.getElementsByTagName('a');
   for (var i = 0, l = aTags.length; i < l; i++) {
@@ -48,12 +48,13 @@ window.onload = function() {
     }.bind(aTags[i]));
   }
 
-  var dataAttributes = document.querySelectorAll('[data-OPIX_FUNC-event]')
+  var dataAttributes = document.querySelectorAll('[data-OPIX_FUNC-event]');
   for (var i = 0, l = dataAttributes.length; i < l; i++) {
+    
     dataAttributes[i].addEventListener('click', function(_e) {
       var event = this.getAttribute('data-OPIX_FUNC-event');
       if (event) {
-        new EventData(event, 'POST', this.getAttribute('data-OPIX_FUNC-data'));
+        Helper.sendEvent(event, 'POST', this.getAttribute('data-OPIX_FUNC-data'));
         new Pixel(event, Helper.now(), this.getAttribute('data-OPIX_FUNC-data'));
       }
     }.bind(dataAttributes[i]));

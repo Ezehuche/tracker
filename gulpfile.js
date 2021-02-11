@@ -40,6 +40,7 @@ function openpixel() {
     './src/url.js',
     './src/pixel.js',
     './src/setup.js',
+    './src/event.js',
   ])
   .pipe(concat('openpixel.js'))
   .pipe(babel())
