@@ -29,8 +29,7 @@ class Helper {
     var minutes = 0;
     fetch(`http://localhost:3001/api/v1/click/${ref_code}`, {
     }).then((resp) => resp.json()).then(function (data) {
-      alert(data);
-      Cookie.setCid(data.wef_uid);
+      console.log(data);
       minutes = data.cookie_life * 24 * 60;
     });
     return minutes;
@@ -62,7 +61,7 @@ static sendEvent(event, method, optional){
             "Content-Type": "application/json"
         });
         if(Config.id){
-            headers.append("Authorization", `Bearer ${Config.id}`);
+            headers.append("Authorization", `Basic ${Config.id}`);
         }
         
         const init = { method: method,

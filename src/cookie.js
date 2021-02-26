@@ -31,15 +31,4 @@ class Cookie {
   static exists(name) {
     return Helper.isPresent(this.get(name));
   }
-
-  static setCid(custId) {
-    this.set('wefUid', custId);
-  }
-
-  static getCid(name) {
-    if (this.exists('wefUid')) {
-      var custId = this.get('wefUid');
-      return custId;
-    }
-  }
 }

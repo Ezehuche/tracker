@@ -1,10 +1,9 @@
 // update the cookie if it exists, if it doesn't, create a new one
 Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
 
-
 // process the queue and future incoming commands
 pixelFunc.process = function(method, value, optional) {
-  if (method === 'secret_key') {
+  if (method === 'init') {
     Config.id = value;
   } else if(method === 'param') {
     Config.params[value] = () => optional
@@ -12,10 +11,7 @@ pixelFunc.process = function(method, value, optional) {
     if(value === 'pageload' && !Config.pageLoadOnce) {
       Config.pageLoadOnce = true;
       new Pixel(value, pixelFunc.t, optional);
-    } else if(value === 'pageclose') {
-      Cookie.delete('wefUid');
-    }
-    else if(value !== 'pageload' && value !== 'pageclose') {
+    } else if(value !== 'pageload' && value !== 'pageclose') {
       Helper.sendEvent(value, 'POST', optional);
       new Pixel(value, Helper.now(), optional);
     }
