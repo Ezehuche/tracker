@@ -1,5 +1,3 @@
-// update the cookie if it exists, if it doesn't, create a new one
-Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
 
 // process the queue and future incoming commands
 pixelFunc.process = function(method, value, optional) {
@@ -8,7 +6,9 @@ pixelFunc.process = function(method, value, optional) {
   } else if(method === 'param') {
     Config.params[value] = () => optional
   } else if(method === 'event') {
-    if(value === 'pageload' && !Config.pageLoadOnce) {
+    if(value === 'detect' && !Config.pageLoadOnce) {
+      // update the cookie if it exists, if it doesn't, create a new one
+      Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
       Config.pageLoadOnce = true;
       new Pixel(value, pixelFunc.t, optional);
     } else if(value !== 'pageload' && value !== 'pageclose') {
