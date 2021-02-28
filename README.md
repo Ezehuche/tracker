@@ -18,23 +18,23 @@ The snippet handles things like making sure the core JavaScript will always be l
 ### Core
 The weferral-tracker core (found at `src/tracker.min.js`) is the JavaScript code that that the snippet loads asynchronously onto the clients website. The core is what does all of the heavy lifting. The core handles settings cookies, collecting clicks, conversions, etc and of course sending beacons and tracking pixels of data when events are called.
 
-### Events
+# Events
 How integrate weferral javascript snippet on your website.
 
-# init
+## init
 First use this method to initialize tracker.js
 ```
 wef("init",account id);
 
 You can get your account id from your weferral admin account
 ```
-# detect
+## detect
 This event method will scan the url for tracking parameters and will track a click, only if the proper parameters exists, that is if the user came through an affiliate referral code. If the detect method finds correct tracking parameters, a cookie will be set and when the client then gets in touch with the conversion code snippet that cookie will get triggered again, and a conversion recorded.
 ```
 wef("event","detect");
 
 ```
-# customer
+## customer
 
 Use this method track a new customer. Customers are usually tracked when a visitor, referred by an affiliate signs up for a trial or fills out a lead form. Then at a later point, one or more conversions will be created for the customer, e.g. on each successive payment of this customer.
 
@@ -43,7 +43,7 @@ wef("event","customer", {customer_id: 'ID-XXXXX',name: 'Jane Doe', email: 'jane@
 
 customer_id, name & email of the customer are required, but you can add additional if you want
 ```
-# conversion
+## conversion
 Use this method track a conversion
 
 This code can always safely be outputted on your thank you page. This code will only track a conversion when the current visitor was brought in by one of your affiliates, within the specified cookie time. For visitors not brought in by an affiliate, no external calls will be made.
@@ -59,7 +59,14 @@ You can also add an attribute to any HTML element that will automatically fire t
 ```
 <button data-wef-event="customer">Some Special Button</button>
 ```
-
+### Example
+Example of a weferral javascript tracker event
+```
+    <script>
+        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="../dist/tracker.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","wef"),wef("init","ID-XXXXXXXX");
+        wef("event","conversion", {customer_id: 'ID-XXXXX',amount: 15.50});
+    </script>
+```
 ## Setup and Customize
 Weferral tracker needs to be customized for your needs before you can start using it. Luckily for you it is really easy to do.
 
