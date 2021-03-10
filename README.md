@@ -1,8 +1,4 @@
 # Weferral Tracker
-<a href="https://www.npmjs.com/package/weferral-tracker"><img src="https://img.shields.io/npm/v/openpixel.svg" /></a>
-<a href="https://www.npmjs.com/package/weferral-tracker"><img src="https://img.shields.io/npm/dt/openpixel.svg" /></a>
-
-
 ## About
 weferral-tracker is a customizable JavaScript library for building tracking pixels. weferral-tracker uses the latest technologies available with fall back support for older browsers. For example is the browser supports web beacons, weferral-tracker will send a web beacon, if it doesn't support them it will inject a 1x1 gif into the page with tracking information as part of the images get request.
 
@@ -63,7 +59,7 @@ You can also add an attribute to any HTML element that will automatically fire t
 Example of a weferral javascript tracker event
 ```
     <script>
-        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="../dist/tracker.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","wef"),wef("init","ID-XXXXXXXX");
+        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="https://weferral-js.vercel.app/tracker.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","wef"),wef("init","ID-XXXXXXXX");
         wef("event","conversion", {customer_id: 'ID-XXXXX',amount: 15.50});
     </script>
 ```
