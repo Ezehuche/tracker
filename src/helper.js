@@ -28,7 +28,7 @@ class Helper {
     return (/bot|crawler|spider|crawling/i).test(userAgent)
   }
 
-  static async gCookie() {
+  static gCookie() {
     if(this.isBot(Browser.userAgent()) === false){
       const headers = new Headers({
         "Content-Type": "application/json"
@@ -42,12 +42,11 @@ class Helper {
       };
       var ref_code = Helper.gRef();
       var minutes = 0;
-      await fetch(`http://localhost:3001/api/v1/click/${ref_code}`, init)
+      fetch(`http://localhost:3001/api/v1/click/${ref_code}`, init)
       .then((resp) => resp.json()).then(function (data) {
         minutes = data.cookie_life * 24 * 60;
         // update the cookie if it exists, if it doesn't, create a new one
         Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), minutes) : Cookie.set('ref', Helper.gRef(), minutes);
-        //console.log(minutes);
       });
       return minutes;
     }
