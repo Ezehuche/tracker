@@ -7,7 +7,7 @@ var HEADER_COMMENT     = process.env.OPIX_HEADER_COMMENT || '// Open Pixel v1.2.
 var DESTINATION_FOLDER = process.env.OPIX_DESTINATION_FOLDER || './dist';
 
 // The name of the global function and the cookie prefix that will be included in the snippet and is the client to fire off custom events
-var PIXEL_FUNC_NAME    = process.env.OPIX_PIXEL_FUNC_NAME || 'opix';
+var PIXEL_FUNC_NAME    = process.env.OPIX_PIXEL_FUNC_NAME || 'wef';
 
 // The remote URL of the pixel.gif file that will be pinged by the browser to send tracking information
 var PIXEL_ENDPOINT     = process.env.OPIX_PIXEL_ENDPOINT || '/pixel.gif';
@@ -40,7 +40,6 @@ function tracker() {
     './src/url.js',
     './src/pixel.js',
     './src/setup.js',
-    './src/event.js',
   ])
   .pipe(concat('tracker.js'))
   .pipe(babel())

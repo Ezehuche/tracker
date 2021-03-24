@@ -5,10 +5,12 @@ class Cookie {
 
   static set(name, value, minutes, path = '/') {
     var expires = '';
+    console.log(minutes);
     if (Helper.isPresent(minutes)) {
       var date = new Date();
       date.setTime(date.getTime() + (minutes * 60 * 1000));
       expires = `expires=${date.toGMTString()}; `;
+      console.log(expires);
     }
     document.cookie = `${this.prefix()}${name}=${value}; ${expires}path=${path}; SameSite=Lax`;
   }

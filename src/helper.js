@@ -24,15 +24,33 @@ class Helper {
     return val;
   }
 
-  static gCookie() {
-    var ref_code = Helper.gRef();
-    var minutes = 0;
-    fetch(`http://localhost:3001/api/v1/click/${ref_code}`, {
-    }).then((resp) => resp.json()).then(function (data) {
-      console.log(data);
-      minutes = data.cookie_life * 24 * 60;
-    });
-    return minutes;
+  static isBot(userAgent) {
+    return (/bot|crawler|spider|crawling/i).test(userAgent)
+  }
+
+  static async gCookie() {
+    if(this.isBot(Browser.userAgent()) === false){
+      const headers = new Headers({
+        "Content-Type": "application/json"
+      });
+      if (Config.id) {
+        headers.append("Authorization", `Basic ${Config.id}`);
+      }
+
+      const init = {
+        headers: headers,
+      };
+      var ref_code = Helper.gRef();
+      var minutes = 0;
+      await fetch(`http://localhost:3001/api/v1/click/${ref_code}`, init)
+      .then((resp) => resp.json()).then(function (data) {
+        minutes = data.cookie_life * 24 * 60;
+        // update the cookie if it exists, if it doesn't, create a new one
+        Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), minutes) : Cookie.set('ref', Helper.gRef(), minutes);
+        //console.log(minutes);
+      });
+      return minutes;
+    }
   }
 
   // reduces all optional data down to a string
@@ -50,10 +68,6 @@ class Helper {
     }
   }
 
-static isBot(userAgent) {
-    return (/bot|crawler|spider|crawling/i).test(userAgent)
-}
-
 static sendEvent(event, method, optional){
   const message = '';
     if(this.isBot(Browser.userAgent()) === false){
@@ -66,7 +80,6 @@ static sendEvent(event, method, optional){
         
         const init = { method: method,
             headers: headers,
-            credentials: 'include',
         };
 
         if(method == "POST" || method=="PUT"){

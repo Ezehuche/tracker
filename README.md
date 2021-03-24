@@ -59,7 +59,7 @@ You can also add an attribute to any HTML element that will automatically fire t
 Example of a weferral javascript tracker event
 ```
     <script>
-        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="https://weferral-js.vercel.app/tracker.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","wef"),wef("init","ID-XXXXXXXX");
+        !function(e,t,n,o,p,i,a){e[o]||((p=e[o]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[],p.t=+new Date,(i=t.createElement(n)).async=1,i.src="https://weferral-js.vercel.app/tracker.js?t="+864e5*Math.ceil(new Date/864e5),(a=t.getElementsByTagName(n)[0]).parentNode.insertBefore(i,a))}(window,document,"script","wef"),wef("init","ID-XXXXXXXX"),
         wef("event","conversion", {customer_id: 'ID-XXXXX',amount: 15.50});
     </script>
 ```

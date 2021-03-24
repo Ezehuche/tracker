@@ -1,4 +1,3 @@
-
 // process the queue and future incoming commands
 pixelFunc.process = function(method, value, optional) {
   if (method === 'init') {
@@ -7,8 +6,7 @@ pixelFunc.process = function(method, value, optional) {
     Config.params[value] = () => optional
   } else if(method === 'event') {
     if(value === 'detect' && !Config.pageLoadOnce) {
-      // update the cookie if it exists, if it doesn't, create a new one
-      Cookie.exists('ref') ? Cookie.set('ref', Cookie.get('ref'), Helper.gCookie()) : Cookie.set('ref', Helper.gRef(), Helper.gCookie());
+      Helper.gCookie()
       Config.pageLoadOnce = true;
       new Pixel(value, pixelFunc.t, optional);
     } else if(value !== 'pageload' && value !== 'pageclose') {
