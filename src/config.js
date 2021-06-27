@@ -1,5 +1,6 @@
 var Config = {
   id: '',
   params: {},
-  version: versionNumber
+  version: versionNumber,
+  host: 'http://localhost:3001/api/v1'
 }

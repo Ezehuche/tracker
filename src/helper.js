@@ -42,7 +42,7 @@ class Helper {
       };
       var ref_code = Helper.gRef();
       var minutes = 0;
-      fetch(`http://localhost:3001/api/v1/click/${ref_code}`, init)
+      fetch(`${Config.host}/click/${ref_code}`, init)
       .then((resp) => resp.json()).then(function (data) {
         minutes = data.cookie_life * 24 * 60;
         // update the cookie if it exists, if it doesn't, create a new one
@@ -86,7 +86,7 @@ static sendEvent(event, method, optional){
         }
         const ref_code = Cookie.get('ref');
 
-        fetch(`http://localhost:3001/api/v1/events/${event}/${ref_code}`, init)
+        fetch(`${Config.host}/events/${event}/${ref_code}`, init)
         .then((resp) => resp.json()).then(function (data) {
             message = 'event successfully sent';
 
